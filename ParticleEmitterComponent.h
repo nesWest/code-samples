@@ -7,12 +7,13 @@
 
 	@author West Foulks (WestFoulks@digipen.edu)
 
-	@brief 	
-
+	@brief 	The Particle Emitter Component Class allows a Emitter object to be
+			 used with our object component architeture. Adding Serlization and
+			 A user interface to be implemented.
 
 *******************************************************************************/
-#include "Component.h"
-#include "ParticleEngineEmitter.h"
+#include "Component.h"				//Class Definition for Components
+#include "ParticleEngineEmitter.h"	//Used to Communicate with the particle engine
 
 class TransformComponent;
 typedef struct ImGradientMark ImGradientMark;
@@ -60,15 +61,10 @@ public:
 	void Init() noexcept override;
 
 	/// <summary>
-	/// note: for christian
-	/// the following functions are for scripting mainly
-	/// you can edit the visuals with GUI and then call these
-	/// to emmit the specific patters created with it.
-	/// I felt like this is the cleanest way to do it.
+	/// The following functions are for Primarily intended for Lua Scripting.
 	/// 
-	/// alternativly you could directly access the particle 
-	/// engines emitt fuction but that may get complicated
-	/// as those fuctions will likely have lots of parameters
+	/// A User can edit the visuals with GUI
+	/// Then call these to emmit the specific patterns created with it.
 	/// </summary>
 
 	/// <summary>
@@ -87,16 +83,18 @@ public:
 	/// </summary>
 	void EmitInstant();
 
+	/// <summary>
+	/// Returns the timer used to determine emission rate
+	/// </summary>
 	bool GetEmitOnTimer() { return emitOnTimer_; }
+	
+	/// <summary>
+	/// Sets the time used to determine emission rates.
+	/// </summary>
 	void SetEmitOnTimer(bool emit) { emitOnTimer_ = emit; }
 
-	void EmitForTime();//TODO: add
-
-	void EmitForTimeonDelay();//TODO: add
-
-
-	//Getters and setters
-	//To actaully change these vars you must use the setters any attempt to
+	//Other Getters and setters
+	//To actaully change these variables you must use the setters any attempt to
 	//set these directly WILL result in bugs and possibly crashes
 	const std::string& GetParticleTexture() const;
 	void SetParticleTexture(const std::string& name);

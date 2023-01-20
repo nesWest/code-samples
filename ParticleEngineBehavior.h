@@ -11,10 +11,10 @@
 				each particles specific data. physics, transform,
 
 *******************************************************************************/
-#include "ParticleEngineEmitter.h"
-#include "Bindable.h"
-#include "Graphics.h"
-#include "Camera.h"
+#include "ParticleEngineEmitter.h"		//Class Definition for A Particle Emitter
+#include "Bindable.h"					//Part of our graphics engine
+#include "Graphics.h"					//Part of our graphics engine
+#include "Camera.h"						//To fetch Camera Location
 
 class ComputeShader;
 class Graphics;
@@ -40,6 +40,7 @@ namespace ParticleEngine
 
 	public:
 
+		//Constructors
 		Behavior(Graphics& gfx) noexcept;
 		~Behavior() noexcept;
 		Behavior(const Behavior&) = default;
@@ -48,18 +49,12 @@ namespace ParticleEngine
 		Behavior& operator=(Behavior&&) = delete;
 
 		void Update(EmitterManager& emitterManager);
-		//RenderInfo GetRenderInfo();
 
 	private:
 		//Forward Refernce
 		typedef struct DispatchInput DispatchInput;
 
-		//The Most particles alive at 
-		//Any on point in the systems lifetime
-		//Can be used to more accuratly allocate 
-		//number of particles
-		UINT mostAlive_;//TODO: add again
-		UINT totalAliveParticles_; //TODO: add
+		UINT totalAliveParticles_;
 
 		/// <summary>
 		/// Allows use of graphics functions 
@@ -67,9 +62,9 @@ namespace ParticleEngine
 		Graphics& gfx;
 
 		/// <summary>
-		/// The bind market to fetch resoruces
+		/// Resource Manager used to store Textures, Meshs, Samplers, Ect
 		/// </summary>
-		BindMarket& mrkt_;
+		ResourceManager& resourceManager_;
 
 		//The Compute Shader ran across all particles
 		ID3D11ComputeShader* csParticleShader_;
@@ -77,7 +72,7 @@ namespace ParticleEngine
 		//allows for sampling of textures
 		Sampler* sampler_;
 		
-		//GlobalParameters
+		//GlobalParameters Direct X buffers
 		ID3D11Buffer* cbGParameters_ = nullptr;
 		ID3D11Buffer* cbEmitterParameters_ = nullptr;
 
@@ -94,8 +89,9 @@ namespace ParticleEngine
 		void DispatchDefaultCompute(ID3D11DeviceContext* deviceContex, DispatchInput* input, EmitterData* emitter);
 
 		//Map Global Params
-		//void OldMapGlobalParams(ID3D11DeviceContext* deviceContext);
 		void MapGlobalParams();
+
+		//Maps Params from a emitter object
 		void MapEmitterParams(EmitterData* emitter);
 	};
 

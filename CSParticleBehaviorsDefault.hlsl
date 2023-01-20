@@ -6,11 +6,10 @@
 
     @authors    West Foulks (WestFoulks@digipen.edu)
 
-    @brief      A compute shader used to calculate data assocaited with 
-                particles
+    @brief      A compute shader used to calculate data associated with 
+                particles. 
 
 *******************************************************************************/
-
 
 /// <summary>
 /// Parameters that are given to every emitter 
@@ -18,10 +17,8 @@
 cbuffer GlobalParams : register( b0 )
 {
 
-    uint4   g_param;    // pcbCS->param[0]  = Nothing;
-                        // pcbCS->param[1]  = Nothing;              
-    float4  g_paramf;   // pcbCS->paramf[0] = Delta Time;
-                        // pcbCS->paramf[1] = nothing; 
+    uint4   g_param;    // [0] = Nothing    [1] = Nothing;              
+    float4  g_paramf;   // [0] = Delta Time [1] = Nothing; 
 
 };
 
@@ -32,8 +29,8 @@ cbuffer GlobalParams : register( b0 )
 cbuffer EmitterParams : register(b1)
 {
 
-    float4 epPosition;//Emitter position xyzw
-    float2 epScale;   //[0] x scale of the emitter [1] y scale of the emitter
+    float4 epPosition; //Emitter position xyzw
+    float2 epScale;    //[0] x scale of the emitter [1] y scale of the emitter
     float2 colorData;  //[0] # of colors [1]nothing
 
 };
@@ -57,10 +54,10 @@ struct BehaviorData
 StructuredBuffer<BehaviorData>   BehavorDataOld: register(t23);//Data IN
 RWStructuredBuffer<BehaviorData> BehavorDataNew;//Data Out
 
-SamplerState sam;
-Texture2D tex;    // The Spawn Texture
+SamplerState sam; // Sampler
+Texture2D tex;    // Texture used to determine spawn location
 
-
+//Color gradient used to set tha particle color later in the pixel shader
 struct Color
 {
     float4 color;
@@ -99,6 +96,7 @@ float2 RandPositionByBox(float2 scale, float2 seed)
 
     return pos;
 }
+
 
 float Fit(float value, float oldMin, float oldMax, float newMin, float newMax)
 {

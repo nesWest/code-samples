@@ -6,18 +6,20 @@
 
 	@authors West Foulks (WestFoulks@Gmail.com)
 
-	@brief 
+	@brief   The Particle Emitter Component Class allows a Emitter object to be
+			 used with our object component architeture. Adding Serlization and
+			 A user interface to be implemented.
 
 *******************************************************************************/
-#include "stdafx.h"
-#include "ParticleEmitterComponent.h"
-#include "ParticleEngine.h"
-#include "GameObject.h"
-#include "Component.h"
-#include "TransformComponent.h"
-#include "Clock.h"
-#include "ImGuiUtil.h"
-#include "imgui\imgui_color_gradient.h"
+#include "stdafx.h"						//Header included in all files.
+#include "ParticleEmitterComponent.h"   //This Files Header
+#include "ParticleEngine.h"				//Contains the Particle Engine namepspace
+#include "GameObject.h"					//Class Definition for GameObjects
+#include "Component.h"					//Class Definition for Component
+#include "TransformComponent.h"			//Class Definition for a transforme Component
+#include "Clock.h"						//Contains Delta Time
+#include "ImGuiUtil.h"					//ImGui Utility Library
+#include "imgui\imgui_color_gradient.h" //ImGui Color Gradient
 
 using Vector2 = DirectX::SimpleMath::Vector2;
 using Vector3 = DirectX::SimpleMath::Vector3;
