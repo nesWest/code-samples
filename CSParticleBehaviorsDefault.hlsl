@@ -4,7 +4,7 @@
 
     @date       01/02/2021
 
-    @authors    West Foulks (WestFoulks@digipen.edu)
+    @authors    West Foulks (WestFoulks@gmail.com)
 
     @brief      A compute shader used to calculate data associated with 
                 particles. 
