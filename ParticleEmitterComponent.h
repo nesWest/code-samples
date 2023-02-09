@@ -5,7 +5,7 @@
 
 	@date 	01/09/2021
 
-	@author West Foulks (WestFoulks@digipen.edu)
+	@author West Foulks (WestFoulks@gmail.com)
 
 	@brief 	The Particle Emitter Component Class allows a Emitter object to be
 			 used with our object component architeture. Adding Serlization and
